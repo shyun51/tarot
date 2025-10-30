@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>타로 카드 뽑기</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap"
+    />
+    <script defer src="script.js"></script>
+  </head>
+  <body>
+    <main class="app">
+      <header class="app__header">
+        <h1>타로 카드 뽑기</h1>
+        <p>
+          덱을 섞어 펼쳐 놓고, 원하는 카드를 직접 골라보세요. 선택한 카드로 오늘의 메시지를
+          확인합니다.
+        </p>
+      </header>
+      <section class="controls" aria-label="조작 영역">
+        <label class="controls__label" for="draw-count">선택할 카드 장수</label>
+        <select id="draw-count" class="controls__select" aria-label="선택할 카드 장수">
+          <option value="1">1장</option>
+          <option value="3">3장</option>
+          <option value="5" selected>5장</option>
+        </select>
+        <button id="shuffle-button" class="controls__button" type="button">카드 펼치기</button>
+        <button id="reset-button" class="controls__button controls__button--ghost" type="button">
+          초기화
+        </button>
+      </section>
+      <section id="deck" class="deck" aria-live="polite" aria-label="선택 가능한 카드"></section>
+      <section id="results" class="results" aria-live="polite" aria-label="선택한 카드 결과"></section>
+    </main>
+
+    <div id="confirm-backdrop" class="backdrop hidden" role="presentation"></div>
+    <section
+      id="confirm-modal"
+      class="modal hidden"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="confirm-title"
+    >
+      <div class="modal__content">
+        <h2 id="confirm-title">이 카드들로 진행할까요?</h2>
+        <p class="modal__description">
+          선택한 카드를 확인한 뒤 진행을 결정하세요. 마음이 바뀌었다면 취소하고 다시 선택할 수
+          있습니다.
+        </p>
+        <ul id="confirm-list" class="modal__list"></ul>
+        <div class="modal__actions">
+          <button id="confirm-cancel" class="controls__button controls__button--ghost" type="button">
+            아니요, 다시 고를래요
+          </button>
+          <button id="confirm-ok" class="controls__button" type="button">네, 진행할래요</button>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
